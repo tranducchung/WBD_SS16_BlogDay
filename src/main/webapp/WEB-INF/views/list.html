@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Day</title>
+</head>
+<h1>Blog Day</h1>
+<a th:href="@{/create-blog}">Write Blog</a>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<body>
+<form>
+    <table border="1">
+        <tr style="color: crimson">
+            <th>Blog</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <th:block th:each="blog : ${blogs}">
+            <tr>
+                <td th:text="${blog.getName()}"></td>
+                <td><a th:href="@{/view-blogs/__${blog.getId()}__}">View</a></td>
+                <td><a th:href="@{/edit-blogs/__${blog.getId()}__}">Edit</a></td>
+                <td><a th:href="@{/delete-blogs/__${blog.getId()}__}">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+</form>
+</body>
+</html>
